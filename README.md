@@ -2,3 +2,4 @@
 ## Members:
 - Albert Dinh
 - Arjun Mehta
+- Gurbir Sandha
