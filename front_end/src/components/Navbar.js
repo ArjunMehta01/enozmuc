@@ -25,7 +25,7 @@ export const Navbar = () => {
 							START
 						</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a class="nav-link" href="#">
 							LOGIN
 						</a>
