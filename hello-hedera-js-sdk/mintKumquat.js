@@ -36,6 +36,7 @@ const {
 
 module.exports = async function mintKumquat(tokenId, client, supplyKey) {
 
+    console.log("Inside minter");
     mintTx = await new TokenMintTransaction()
 			.setTokenId(tokenId)
 			.setMetadata([Buffer.from(QUATS)])
@@ -44,8 +45,8 @@ module.exports = async function mintKumquat(tokenId, client, supplyKey) {
     let mintTxSubmit = await mintTxSign.execute(client);
     let mintRx = await mintTxSubmit.getReceipt(client);
 
-
+    console.log("First coin minted!");
     console.log(mintRx.status);
 
-    return mintRx;
+    return mintTx;
 }
