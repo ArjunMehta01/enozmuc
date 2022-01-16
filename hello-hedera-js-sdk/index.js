@@ -26,7 +26,7 @@ async function main() {
     //Create a new account with 1,000 tinybar starting balance
     const newAccountTransactionResponse = await new AccountCreateTransaction()
         .setKey(newAccountPublicKey)
-        .setInitialBalance(Hbar.fromTinybars(1000))
+        .setInitialBalance(Hbar.fromTinybars(0))
         .execute(client);
 
     // Get the new account ID
@@ -44,8 +44,8 @@ async function main() {
 
     //Create the transfer transaction
     const sendHbar = await new TransferTransaction()
-        .addHbarTransfer(myAccountId, Hbar.fromTinybars(-1000))
-        .addHbarTransfer(newAccountId, Hbar.fromTinybars(1000))
+        .addHbarTransfer(myAccountId, Hbar.fromTinybars(-10))
+        .addHbarTransfer(newAccountId, Hbar.fromTinybars(10))
         .execute(client);
 
     //Verify the transaction reached consensus
@@ -64,7 +64,10 @@ async function main() {
         .setAccountId(newAccountId)
         .execute(client);
 
+    const getOldBalance = await new AccountBalanceQuery().setAccountId(myAccountId).execute(client)
+
     console.log("The account balance after the transfer is: " +getNewBalance.hbars.toTinybars() +" tinybar.")
+    console.log("OG account balance " + getOldBalance)
 
 }
 main();
