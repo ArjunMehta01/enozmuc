@@ -59,6 +59,8 @@ async function main() {
 
     console.log("Trying to transfer coin to user");
     await treasury2U((await testDummy).accountId, treasuryId, treasuryKey, client, (await mockTokenID).token);
+    
+    
 
 
 
