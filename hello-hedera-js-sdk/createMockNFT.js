@@ -65,8 +65,8 @@ async function createMockNFT() {
 
     let nftCreateTxSign = await nftCreate.sign(adminKey);
 	let nftCreateSubmit = await nftCreateTxSign.execute(client);
-	// let nftCreateRx = await nftCreateSubmit.getReceipt(client);
-	// let tokenId = nftCreateRx.tokenId;
+	let nftCreateRx = await nftCreateSubmit.getReceipt(client);
+	let tokenId = nftCreateRx.tokenId;
 	// console.log(`Created NFT with Token ID: ${tokenId} \n`);
 
     // var tokenInfo = await new TokenInfoQuery().setTokenId(tokenId).execute(client);
