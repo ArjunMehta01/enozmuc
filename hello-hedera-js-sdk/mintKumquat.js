@@ -2,7 +2,7 @@ QUATS = [
     "Hog Ridah",
     "Mashallah Sister Dixie",
     "Sorry Martha no one wants you in their bloodline",
-    "Jesus Died For These Quads",
+    "Jesus Died For These Quats",
     "If You Like it then you should've put a ring on it",
     "Top of tha morning",
     "Get Kummed On",
@@ -42,16 +42,20 @@ const {
     AccountBalanceQuery,
     AccountUpdateTransaction,
     TokenAssociateTransaction,
-} = require("@hashgraph/sdk");
-// , 
+} = require("@hashgraph/sdk"); 
 
-module.exports = async function mintKumquat(tokenId, mintedSoFar,treasuryId, treasuryKey, client, supplyKey) {
-
+module.exports = async function mintKumquat(tokenId, client, supplyKey) {
 
     console.log("Inside minter");
+    const query = await new TokenInfoQuery()
+    .setTokenId(tokenId);
+    const tokenSupply = (await query.execute(client)).totalSupply;
+
+    console.log(`${tokenSupply} tokens so far`);
+    
     let mintTx = await new TokenMintTransaction()
 			.setTokenId(tokenId)
-			.setMetadata([Buffer.from(QUATS[mintedSoFar])])
+			.setMetadata([Buffer.from(QUATS[tokenSupply])])
 			.freezeWith(client);
     console.log("passing mint")
     let mintTxSign = await mintTx.sign(supplyKey);
@@ -59,8 +63,7 @@ module.exports = async function mintKumquat(tokenId, mintedSoFar,treasuryId, tre
     let mintTxSubmit = await mintTxSign.execute(client);
     console.log(" tx submut pass")
     // let mintRx = await mintTxSubmit.getReceipt(client);
-
-    console.log("First coin minted!");
+    console.log("coin minted!");
     // console.log(mintRx.status);
 
 

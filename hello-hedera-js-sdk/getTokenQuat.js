@@ -30,7 +30,7 @@ module.exports = async function getTokenQuat(tokenID, tokenSerialNum, client) {
     let metadataStr = JSON.parse(nftInfo.toString()).metadata;
 
     var str = '';
-    for (var i = 0; i < ascii.length; i+=2) {
+    for (var i = 0; i < metadataStr.length; i+=2) {
         str += String.fromCharCode(parseInt(metadataStr.substr(i, 2), 16));
     }
     return str;
