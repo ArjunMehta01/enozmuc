@@ -12,6 +12,7 @@ QUATS = [
     "Loyal to Alabama",
     "Oppresion leads to good music",
     "A MAN HAS FALLEN INTO THE RIVER IN LEGO CITY",
+    "I'm feelin' it now Mr.Krabs"
 ];
 
 const {
@@ -33,7 +34,7 @@ const {
     TokenAssociateTransaction,
 } = require("@hashgraph/sdk");
 
-async function mintKumquat(tokenId, client, supplyKey) {
+module.exports = async function mintKumquat(tokenId, client, supplyKey) {
 
     mintTx = await new TokenMintTransaction()
 			.setTokenId(tokenId)
@@ -42,7 +43,9 @@ async function mintKumquat(tokenId, client, supplyKey) {
     let mintTxSign = await mintTx.sign(supplyKey);
     let mintTxSubmit = await mintTxSign.execute(client);
     let mintRx = await mintTxSubmit.getReceipt(client);
+
+
+    console.log(mintRx.status);
+
     return mintRx;
 }
-
-export default mintKumquat;

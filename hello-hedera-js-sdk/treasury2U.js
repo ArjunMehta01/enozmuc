@@ -19,12 +19,14 @@ const {
     TokenAssociateTransaction,
 } = require("@hashgraph/sdk");
 
-async function treasury2U(userId) {
+module.exports = async function treasury2U(userId, treasuryId, treasuryKey, client, tokenId) {
+
     let tokenTransferTx = await new TransferTransaction()
-    .addNftTransfer(tokenId, 2, treasuryId, aliceId)
+    .addNftTransfer(tokenId, 2, treasuryId, userId)
     .freezeWith(client)
     .sign(treasuryKey);
-let tokenTransferSubmit = await tokenTransferTx.execute(client);
-let tokenTransferRx = await tokenTransferSubmit.getReceipt(client);
+    let tokenTransferSubmit = await tokenTransferTx.execute(client);
+    let tokenTransferRx = await tokenTransferSubmit.getReceipt(client);
 console.log(`\n NFT transfer Treasury->Alice status: ${tokenTransferRx.status} \n`);
 }
+

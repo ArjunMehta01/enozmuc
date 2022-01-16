@@ -1,26 +1,7 @@
 const { Client, PrivateKey, AccountCreateTransaction, AccountBalanceQuery, Hbar, TransferTransaction} = require("@hashgraph/sdk");
 require("dotenv").config();
 
-const {
-    AccountId,
-    PrivateKey,
-    Client,
-    TokenCreateTransaction,
-    TokenInfoQuery,
-    TokenType,
-    CustomRoyaltyFee,
-    CustomFixedFee,
-    Hbar,
-    TokenSupplyType,
-    TokenMintTransaction,
-    TokenBurnTransaction,
-    TransferTransaction,
-    AccountBalanceQuery,
-    AccountUpdateTransaction,
-    TokenAssociateTransaction,
-} = require("@hashgraph/sdk");
-
-async function addUser() {
+module.exports = async function addUser() {
 
     //Grab your Hedera testnet account ID and private key from your .env file
     const myAccountId = process.env.MY_ACCOUNT_ID;
@@ -87,7 +68,10 @@ async function addUser() {
 
     // console.log("The account balance after the transfer is: " +getNewBalance.hbars.toTinybars() +" tinybar.")
     // console.log("OG account balance " + getOldBalance)
+    console.log("gabagool");
+    console.log("cum", newAccountPrivateKey, newAccountPublicKey, newAccountId);
     return {privateKey: newAccountPrivateKey, publicKey: newAccountPublicKey, accountId: newAccountId};
 }
 
-export default addUser;
+
+// exports.addUser = addUser;
