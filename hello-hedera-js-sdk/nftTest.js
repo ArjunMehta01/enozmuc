@@ -21,15 +21,15 @@ const {
 } = require("@hashgraph/sdk");
 
 // Configure accounts and client, and generate needed keys
-const treasuryId = AccountId.fromString(process.env.MY_ACCOUNT_ID);
-const treasuryKey = PrivateKey.fromString(process.env.MY_PRIVATE_KEY);
-// const treasuryId = AccountId.fromString(process.env.TREASURY_ID);
-// const treasuryKey = PrivateKey.fromString(process.env.TREASURY_PVKEY);
-// const aliceId = AccountId.fromString(process.env.ALICE_ID);
-// const aliceKey = PrivateKey.fromString(process.env.ALICE_PVKEY);
-// const bobId = AccountId.fromString(process.env.BOB_ID);
-// const bobKey = PrivateKey.fromString(process.env.BOB_PVKEY);
-// const client = Client.forTestnet().setOperator(operatorId, operatorKey);
+const operatorId = AccountId.fromString(process.env.OPERATOR_ID);
+const operatorKey = PrivateKey.fromString(process.env.OPERATOR_PVKEY);
+const treasuryId = AccountId.fromString(process.env.TREASURY_ID);
+const treasuryKey = PrivateKey.fromString(process.env.TREASURY_PVKEY);
+const aliceId = AccountId.fromString(process.env.ALICE_ID);
+const aliceKey = PrivateKey.fromString(process.env.ALICE_PVKEY);
+const bobId = AccountId.fromString(process.env.BOB_ID);
+const bobKey = PrivateKey.fromString(process.env.BOB_PVKEY);
+const client = Client.forTestnet().setOperator(operatorId, operatorKey);
 
 const supplyKey = PrivateKey.generate();
 const adminKey = PrivateKey.generate();
@@ -56,8 +56,8 @@ async function main() {
 
 	// CREATE NFT WITH CUSTOM FEE
 	let nftCreate = await new TokenCreateTransaction()
-		.setTokenName("Kumquat")
-		.setTokenSymbol("")
+		.setTokenName("Fall Collection")
+		.setTokenSymbol("LEAF")
 		.setTokenType(TokenType.NonFungibleUnique)
 		.setDecimals(0)
 		.setInitialSupply(0)
@@ -186,5 +186,3 @@ async function main() {
 		return [balanceCheckTx.tokens._map.get(tokenId.toString()), balanceCheckTx.hbars];
 	}
 }
-
-main();
