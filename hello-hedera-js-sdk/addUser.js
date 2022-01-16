@@ -71,7 +71,9 @@ module.exports = async function addUser() {
     
     console.log("gabagool");
     console.log("cum", newAccountPrivateKey, newAccountPublicKey, newAccountId);
-    return {privateKey: newAccountPrivateKey, publicKey: newAccountPublicKey, accountId: newAccountId};
+
+    let tokensOwned = [];
+    return {privateKey: newAccountPrivateKey, publicKey: newAccountPublicKey, accountId: newAccountId, tokens: tokensOwned};
 }
 
 

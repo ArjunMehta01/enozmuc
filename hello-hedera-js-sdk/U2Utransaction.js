@@ -17,8 +17,13 @@ const {
     TokenAssociateTransaction,
 } = require("@hashgraph/sdk");
 
-module.exports = async function U2Utransaction(sellerID, buyerID, 
-                              sellerKey, buyerKey, price, client, tokenID, tokenSerialNum) {
+module.exports = async function U2Utransaction(price, client, tokenID, 
+                              tokenSerialNum, sellerInfo, buyerInfo) {
+
+    let sellerID = sellerInfo.accountId;
+    let buyerID = buyerInfo.accountId;
+    let sellerKey = selllerinfo.privateKey;
+    let buyerKey = buyerInfo.privateKey;
 
     console.log("association")
     let associateTx = await new AccountUpdateTransaction()
@@ -40,4 +45,12 @@ module.exports = async function U2Utransaction(sellerID, buyerID,
     let tokenTransferSubmit = await tokenTransferSign.execute(client);
     let tokenTransferRx = await tokenTransferSubmit.getReceipt(client);
     console.log(`\n Kumquat transfer ${sellerID} to ${BuyerID} status: ${tokenTransferRx.status} \n`);
+
+    buyerInfo.tokens.push(tokenSerialNum);
+
+    let index = sellerInfo.tokens.indexOf(tokenSerialNum);
+    if (index != -1) {
+        sellerInfo.tokens.splice(index, 1);
+    }
+
 }

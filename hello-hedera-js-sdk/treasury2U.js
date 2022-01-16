@@ -19,9 +19,12 @@ const {
     TokenAssociateTransaction,
 } = require("@hashgraph/sdk");
 
-module.exports = async function treasury2U(userId, userKey, treasuryId, treasuryKey, client, tokenId, tokenSerialNum) {
+module.exports = async function treasury2U(treasuryId, treasuryKey, client, tokenId, tokenSerialNum, userInfo, treasury) {
     console.log("Inside T2U");
-    
+
+    let userId = userInfo.accountId;
+    let userKey = userInfo.privateKey;
+
     console.log("association")
     let associateTx = await new AccountUpdateTransaction()
 		.setAccountId(userId)
@@ -40,6 +43,13 @@ module.exports = async function treasury2U(userId, userKey, treasuryId, treasury
     console.log("I think? uwu")
     let tokenTransferRx = await tokenTransferSubmit.getReceipt(client);
     console.log(`\n NFT transfer Treasury->${userId} status: ${tokenTransferRx.status} \n`);
+
+    userInfo.tokens.push(tokenSerialNum);
+
+    let index = treasury.indexOf(tokenSerialNum);
+    if (index != -1) {
+        treasury.splice(index, 1);
+    }
 
 }
 

@@ -44,18 +44,20 @@ const {
     TokenAssociateTransaction,
 } = require("@hashgraph/sdk"); 
 
-module.exports = async function mintKumquat(tokenId, client, supplyKey) {
+module.exports = async function mintKumquat(tokenId, client, supplyKey, treasury) {
 
     console.log("Inside minter");
     const query = await new TokenInfoQuery()
     .setTokenId(tokenId);
     const tokenSupply = (await query.execute(client)).totalSupply;
 
+    treasury.push(parseInt(tokenSupply) + 1);
+
     console.log(`${tokenSupply} tokens so far`);
     
     let mintTx = await new TokenMintTransaction()
 			.setTokenId(tokenId)
-			.setMetadata([Buffer.from(QUATS[tokenSupply])])
+			.setMetadata([Buffer.from(QUATS[parseInt(tokenSupply)])])
 			.freezeWith(client);
     console.log("passing mint")
     let mintTxSign = await mintTx.sign(supplyKey);
@@ -65,7 +67,6 @@ module.exports = async function mintKumquat(tokenId, client, supplyKey) {
     // let mintRx = await mintTxSubmit.getReceipt(client);
     console.log("coin minted!");
     // console.log(mintRx.status);
-
 
 
     return mintTx;

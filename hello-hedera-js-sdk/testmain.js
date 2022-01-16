@@ -29,6 +29,7 @@ const {
     TokenAssociateTransaction,
     NftId,
     TokenNftInfoQuery,
+    
 } = require("@hashgraph/sdk");
 
 const treasuryId = AccountId.fromString(process.env.MY_ACCOUNT_ID);
@@ -39,34 +40,36 @@ const client = Client.forTestnet().setOperator(treasuryId, treasuryKey);
 async function main() {
     //Instantiates Test user.
 
+    // Track serial nums of tokens owned by treasury
+    let treasuryTokens = [];
+
     let testDummy = addUser();
     console.log("Created User")
     console.log((await testDummy).accountId, (await testDummy).publicKey);
-    console.log("Creating first Kumquat");
+    console.log("Creating Kumquat");
     let mockTokenID = createMockNFT();
     let kumquatID = (await mockTokenID).token;
 
     console.log("about to mint first kumquat");
-    let mintTx1 = await mintKumquat(kumquatID, (await mockTokenID).client, (await mockTokenID).supplyKey);
-
+    let mintTx1 = await mintKumquat(kumquatID, (await mockTokenID).client, (await mockTokenID).supplyKey, treasuryTokens);
+    console.log(treasuryTokens);
 
     console.log("Trying to transfer coin to user");
-    await treasury2U((await testDummy).accountId, (await testDummy).privateKey, treasuryId, treasuryKey, client, kumquatID, 1);
-    console.log("Coin transferred. checking balance for confirmation");
-
-    userBalance = await new AccountBalanceQuery().setAccountId((await testDummy).accountId).execute(client);
-    console.log(userBalance.tokens);
+    console.log(`user tokens before transfer ${(await testDummy).tokens}`);
+    await treasury2U(treasuryId, treasuryKey, client, kumquatID, treasuryTokens[0], (await testDummy), treasuryTokens);
+    console.log(`user tokens after transfer ${(await testDummy).tokens}`);
 
     console.log("get metadata of user's token");
-
     console.log(await getTokenQuat(kumquatID, 1, client));
-    // console.log(getTokenQuat((await mockTokenID).token), 1, client);
-    let mintTx2 = await mintKumquat(kumquatID, (await mockTokenID).client, (await mockTokenID).supplyKey);
 
-    console.log("get all of user's token serial numbers");
+    console.log(`treasury before mint ${treasuryTokens}`);
+    let mintTx2 = await mintKumquat(kumquatID, (await mockTokenID).client, (await mockTokenID).supplyKey, treasuryTokens);
+    console.log(`treasury after mint ${treasuryTokens}`);
 
-    balanceCheck = await new AccountBalanceQuery().setAccountId((await testDummy).accountId).execute(client);
-    console.log(balanceCheck.toString());
+    console.log(`user tokens before transfer ${(await testDummy).tokens}`);
+    await treasury2U(treasuryId, treasuryKey, client, kumquatID, treasuryTokens[0], (await testDummy), treasuryTokens);
+    console.log(`user tokens after transfer ${(await testDummy).tokens}`);
+
 }
 
 
