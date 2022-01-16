@@ -1,4 +1,4 @@
-//
+// Form obtained from: https://getbootstrap.com/docs/4.0/components/forms/
 import React from "react";
 
 export const Form = () => {
@@ -13,9 +13,6 @@ export const Form = () => {
 					aria-describedby="emailHelp"
 					placeholder="Enter email"
 				></input>
-				<small id="emailHelp" className="form-text text-muted">
-					We'll never share your email with anyone else.
-				</small>
 			</div>
 			<div className="form-group">
 				<label for="exampleInputPassword1">Password</label>
