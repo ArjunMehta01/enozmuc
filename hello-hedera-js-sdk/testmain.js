@@ -2,6 +2,7 @@ var addUser = require("./addUser");
 const createMockNFT = require("./createMockNFT");
 const mintKumquat = require("./mintKumquat");
 const treasury2U =  require("./treasury2U");
+const getTokenQuat = require('./getTokenQuat')
 
 
 // import addUser from "./addUser.js";
@@ -29,8 +30,6 @@ const {
     NftId,
     TokenNftInfoQuery,
 } = require("@hashgraph/sdk");
-
-const utf8 = require('utf8');
 
 const treasuryId = AccountId.fromString(process.env.MY_ACCOUNT_ID);
 const treasuryKey = PrivateKey.fromString(process.env.MY_PRIVATE_KEY);
@@ -60,13 +59,8 @@ async function main() {
 
     console.log("get metadata of user's token");
 
-    let nftID = new NftId((await mockTokenID).token, 1);
-    const nftInfo = await new TokenNftInfoQuery()
-     .setNftId(nftID)
-     .execute(client);
-    
-    let metadataStr = JSON.parse(nftInfo.toString()).metadata;
-    console.log(utf8.decode(metadataStr));
+    console.log(getTokenQuat((await mockTokenID).token), 1, client);
 }
+
 
 main();
