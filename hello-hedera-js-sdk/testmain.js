@@ -26,8 +26,9 @@ const {
     AccountBalanceQuery,
     AccountUpdateTransaction,
     TokenAssociateTransaction,
+    NftId,
+    TokenNftInfoQuery,
 } = require("@hashgraph/sdk");
-
 
 
 const treasuryId = AccountId.fromString(process.env.MY_ACCOUNT_ID);
@@ -37,33 +38,33 @@ const client = Client.forTestnet().setOperator(treasuryId, treasuryKey);
 
 async function main() {
     //Instantiates Test user.
+    let tokensMinted = 0;
+
     let testDummy = addUser();
     console.log("Created User")
     console.log((await testDummy).accountId, (await testDummy).publicKey);
     console.log("Creating first Kumquat");
     let mockTokenID = createMockNFT();
-// , treasuryId, treasuryKey, 
+
     console.log("about to mint first kumquat");
-    let mintTx = await mintKumquat((await mockTokenID).token, treasuryId, treasuryKey,  (await mockTokenID).client, (await mockTokenID).supplyKey);
-
-
-    console.log("association")
-    let associateTx = await new AccountUpdateTransaction()
-		.setAccountId((await testDummy).accountId)
-		.setMaxAutomaticTokenAssociations(100)
-		.freezeWith(client)
-		.sign((await testDummy).privateKey);
-	let associateTxSubmit = await associateTx.execute(client);
-	let associateRx = await associateTxSubmit.getReceipt(client);
-	console.log(`New User NFT Auto-Association: ${associateRx.status} \n`);
+    let mintTx = await mintKumquat((await mockTokenID).token, tokensMinted, treasuryId, treasuryKey,  (await mockTokenID).client, (await mockTokenID).supplyKey);
+    tokensMinted = tokensMinted + 1;
 
     console.log("Trying to transfer coin to user");
-    await treasury2U((await testDummy).accountId, treasuryId, treasuryKey, client, (await mockTokenID).token);
+    await treasury2U((await testDummy).accountId, (await testDummy).privateKey, treasuryId, treasuryKey, client, (await mockTokenID).token, 1);
+    console.log("Coin transferred. checking balance for confirmation");
+
+    userBalance = await new AccountBalanceQuery().setAccountId((await testDummy).accountId).execute(client);
+    console.log(userBalance.tokens);
+
+    console.log("get metadata of user's token");
+
+    let nftID = new NftId((await mockTokenID).token, 1);
+    const nftInfo = await new TokenNftInfoQuery()
+     .setNftId(nftID)
+     .execute(client);
     
-    
-
-
-
+    console.log(nftInfo
 }
 
 main();
