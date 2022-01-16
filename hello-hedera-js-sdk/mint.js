@@ -14,6 +14,25 @@ QUATS = [
     "A MAN HAS FALLEN INTO THE RIVER IN LEGO CITY",
 ];
 
+const {
+    AccountId,
+    PrivateKey,
+    Client,
+    TokenCreateTransaction,
+    TokenInfoQuery,
+    TokenType,
+    CustomRoyaltyFee,
+    CustomFixedFee,
+    Hbar,
+    TokenSupplyType,
+    TokenMintTransaction,
+    TokenBurnTransaction,
+    TransferTransaction,
+    AccountBalanceQuery,
+    AccountUpdateTransaction,
+    TokenAssociateTransaction,
+} = require("@hashgraph/sdk");
+
 async function mintKumquat(tokenId, client, supplyKey) {
 
     mintTx = await new TokenMintTransaction()

@@ -1,6 +1,25 @@
 const { Client, PrivateKey, AccountCreateTransaction, AccountBalanceQuery, Hbar, TransferTransaction} = require("@hashgraph/sdk");
 require("dotenv").config();
 
+const {
+    AccountId,
+    PrivateKey,
+    Client,
+    TokenCreateTransaction,
+    TokenInfoQuery,
+    TokenType,
+    CustomRoyaltyFee,
+    CustomFixedFee,
+    Hbar,
+    TokenSupplyType,
+    TokenMintTransaction,
+    TokenBurnTransaction,
+    TransferTransaction,
+    AccountBalanceQuery,
+    AccountUpdateTransaction,
+    TokenAssociateTransaction,
+} = require("@hashgraph/sdk");
+
 async function addUser() {
 
     //Grab your Hedera testnet account ID and private key from your .env file

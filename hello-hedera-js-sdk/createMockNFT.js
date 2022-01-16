@@ -34,15 +34,6 @@ async function createMockNFT() {
     const freezeKey = PrivateKey.generate();
     const wipeKey = PrivateKey.generate();
 
-    CID = [
-		"QmNPCiNA3Dsu3K5FxDPMG5Q3fZRwVTg14EXA92uqEeSRXn",
-		"QmZ4dgAgt8owvnULxnKxNe8YqpavtVCXmc1Lt2XajFpJs9",
-		"QmPzY5GxevjyfMUF5vEAjtyRoigzWp47MiKAtLBduLMC1T",
-		"Qmd3kGgSrAwwSrhesYcY7K54f3qD7MDo38r7Po2dChtQx5",
-		"QmWgkKz3ozgqtnvbCLeh7EaR1H8u5Sshx3ZJzxkcrT3jbw",
-	];
-
-
     let nftCreate = await new TokenCreateTransaction()
     .setTokenName("KUMQUAT")
     .setTokenSymbol("KUM")
@@ -72,7 +63,7 @@ async function createMockNFT() {
     // var tokenInfo = await new TokenInfoQuery().setTokenId(tokenId).execute(client);
 	// console.table(tokenInfo.customFees[0]);
 
-
+    return tokenId;
 }
 
 

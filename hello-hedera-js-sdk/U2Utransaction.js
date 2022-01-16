@@ -1,3 +1,22 @@
+const {
+    AccountId,
+    PrivateKey,
+    Client,
+    TokenCreateTransaction,
+    TokenInfoQuery,
+    TokenType,
+    CustomRoyaltyFee,
+    CustomFixedFee,
+    Hbar,
+    TokenSupplyType,
+    TokenMintTransaction,
+    TokenBurnTransaction,
+    TransferTransaction,
+    AccountBalanceQuery,
+    AccountUpdateTransaction,
+    TokenAssociateTransaction,
+} = require("@hashgraph/sdk");
+
 async function U2Utransaction(tokenID, quatID, sellerID, buyerID, 
                               sellerKey, buyerKey, price, client) {
     let tokenTransfer = await new TransferTransaction()
