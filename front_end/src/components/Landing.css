@@ -1,4 +1,4 @@
-.heading_name {
+.heading-name {
 	color: white;
 }
 
@@ -6,9 +6,28 @@
 	color: white;
 }
 
-.container-size {
-	color: white;
-	width: 200px;
-	height: 300px;
-	background-color: antiquewhite;
+.container-size-l {
+	color: black;
+	width: 400px;
+	height: 250px;
+	background-color: rgb(39, 34, 35);
+	border-radius: 20px;
+	text-align: center;
+	margin: auto;
+	margin-top: 50px;
+	padding-top: 5px;
+	margin-bottom: 50px;
+	font-size: 30px;
+}
+
+.input-s {
+	align-content: center;
+}
+
+.form-group {
+	align-content: center;
+}
+
+.btn {
+	width: 150px;
 }
