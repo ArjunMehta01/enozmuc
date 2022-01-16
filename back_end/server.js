@@ -5,6 +5,8 @@ const app = express();
 // connect database
 connectDB();
 
+// Init middleware
+app.use(express.json({ extended: false }));
 // this is just for development
 app.get("/", (req, res) => res.send("API Running"));
 
