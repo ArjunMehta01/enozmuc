@@ -20,7 +20,7 @@ const {
 // RUNS once
 module.exports = async function createMockNFT() {
 
-
+    console.log("Inside createNFT function");
     
     // Configure accounts and client, and generate needed keys
     const operatorId = AccountId.fromString(process.env.MY_ACCOUNT_ID);

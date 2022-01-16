@@ -38,13 +38,17 @@ const client = Client.forTestnet().setOperator(treasuryId, treasuryKey);
 async function main() {
     //Instantiates Test user.
     let testDummy = addUser();
-    console.log("eat my ass ")
+    console.log("Created User")
+    console.log((await testDummy).accountId, (await testDummy).publicKey);
+    console.log("Creating first Kumquat");
     let mockTokenID = createMockNFT();
 
-    let mintRx = mintKumquat((await mockTokenID).token, (await mockTokenID).client, (await mockTokenID).supplyKey);
+    console.log("about to mint first kumquat");
+    let mintTx = mintKumquat((await mockTokenID).token, (await mockTokenID).client, (await mockTokenID).supplyKey);
+    console.log("Coin Minted");
+    console.log("Trying to transfer coin to user");
+    treasury2U((await testDummy).accountId, treasuryId, treasuryKey, client, (await mockTokenID).token);
 
-
-    // treasury2U((await testDummy).accountId, treasuryId, treasuryKey._key, client, (await mockTokenID).token);
 
 
 }

@@ -3,6 +3,7 @@ require("dotenv").config();
 
 module.exports = async function addUser() {
 
+    console.log("Adding new user");
     //Grab your Hedera testnet account ID and private key from your .env file
     const myAccountId = process.env.MY_ACCOUNT_ID;
     const myPrivateKey = process.env.MY_PRIVATE_KEY;
@@ -68,8 +69,8 @@ module.exports = async function addUser() {
 
     // console.log("The account balance after the transfer is: " +getNewBalance.hbars.toTinybars() +" tinybar.")
     // console.log("OG account balance " + getOldBalance)
-    console.log("gabagool");
-    console.log("cum", newAccountPrivateKey, newAccountPublicKey, newAccountId);
+    console.log("User created");
+    console.log("User information", newAccountPrivateKey, newAccountPublicKey, newAccountId);
     return {privateKey: newAccountPrivateKey, publicKey: newAccountPublicKey, accountId: newAccountId};
 }
 

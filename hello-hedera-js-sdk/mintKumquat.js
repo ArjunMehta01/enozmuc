@@ -35,8 +35,11 @@ const {
 } = require("@hashgraph/sdk");
 
 module.exports = async function mintKumquat(tokenId, client, supplyKey) {
-    console.log("kum");
-    let mintTx = await new TokenMintTransaction()
+
+
+    console.log("Inside minter");
+    mintTx = await new TokenMintTransaction()
+
 			.setTokenId(tokenId)
 			.setMetadata([Buffer.from(QUATS)])
 			.freezeWith(client);
@@ -44,8 +47,8 @@ module.exports = async function mintKumquat(tokenId, client, supplyKey) {
     let mintTxSubmit = await mintTxSign.execute(client);
     let mintRx = await mintTxSubmit.getReceipt(client);
 
-
+    console.log("First coin minted!");
     console.log(mintRx.status);
 
-    return mintRx;
+    return mintTx;
 }
