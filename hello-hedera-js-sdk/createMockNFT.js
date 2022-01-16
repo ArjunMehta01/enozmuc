@@ -44,7 +44,7 @@ module.exports = async function createMockNFT() {
     .setTreasuryAccountId(treasuryId)
     .setSupplyType(TokenSupplyType.Finite)
     // change length
-    .setMaxSupply(14)
+    .setMaxSupply(5)
     // .setCustomFees([nftCustomFee])
     .setAdminKey(adminKey)
     .setSupplyKey(supplyKey)

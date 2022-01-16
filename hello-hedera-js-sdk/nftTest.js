@@ -21,8 +21,8 @@ const {
 } = require("@hashgraph/sdk");
 
 // Configure accounts and client, and generate needed keys
-const operatorId = AccountId.fromString(process.env.OPERATOR_ID);
-const operatorKey = PrivateKey.fromString(process.env.OPERATOR_PVKEY);
+const treasuryId = AccountId.fromString(process.env.MY_ACCOUNT_ID);
+const treasuryKey = PrivateKey.fromString(process.env.MY_PRIVATE_KEY);
 const treasuryId = AccountId.fromString(process.env.TREASURY_ID);
 const treasuryKey = PrivateKey.fromString(process.env.TREASURY_PVKEY);
 const aliceId = AccountId.fromString(process.env.ALICE_ID);
@@ -56,8 +56,8 @@ async function main() {
 
 	// CREATE NFT WITH CUSTOM FEE
 	let nftCreate = await new TokenCreateTransaction()
-		.setTokenName("Fall Collection")
-		.setTokenSymbol("LEAF")
+		.setTokenName("Kumquat")
+		.setTokenSymbol("")
 		.setTokenType(TokenType.NonFungibleUnique)
 		.setDecimals(0)
 		.setInitialSupply(0)
@@ -186,3 +186,5 @@ async function main() {
 		return [balanceCheckTx.tokens._map.get(tokenId.toString()), balanceCheckTx.hbars];
 	}
 }
+
+main();

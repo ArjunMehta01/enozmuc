@@ -22,11 +22,16 @@ const {
 module.exports = async function treasury2U(userId, treasuryId, treasuryKey, client, tokenId) {
     console.log("Inside T2U");
     let tokenTransferTx = await new TransferTransaction()
-    .addNftTransfer(tokenId, 2, treasuryId, userId)
+    .addNftTransfer(tokenId, 1, treasuryId, userId)
     .freezeWith(client)
     .sign(treasuryKey);
     let tokenTransferSubmit = await tokenTransferTx.execute(client);
+    console.log("I think? uwu")
     let tokenTransferRx = await tokenTransferSubmit.getReceipt(client);
-    console.log(`\n NFT transfer Treasury->${userID} status: ${tokenTransferRx.status} \n`);
+    console.log(`\n NFT transfer Treasury->${userId} status: ${tokenTransferRx.status} \n`);
+
+
+
+
 }
 
