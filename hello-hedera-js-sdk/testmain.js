@@ -30,6 +30,7 @@ const {
     TokenNftInfoQuery,
 } = require("@hashgraph/sdk");
 
+const utf8 = require('utf8');
 
 const treasuryId = AccountId.fromString(process.env.MY_ACCOUNT_ID);
 const treasuryKey = PrivateKey.fromString(process.env.MY_PRIVATE_KEY);
@@ -64,7 +65,8 @@ async function main() {
      .setNftId(nftID)
      .execute(client);
     
-    console.log(nftInfo
+    let metadataStr = JSON.parse(nftInfo.toString()).metadata;
+    console.log(utf8.decode(metadataStr));
 }
 
 main();
