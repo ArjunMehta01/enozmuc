@@ -21,14 +21,14 @@ const {
 } = require("@hashgraph/sdk");
 
 // Configure accounts and client, and generate needed keys
-const treasuryId = AccountId.fromString(process.env.MY_ACCOUNT_ID);
-const treasuryKey = PrivateKey.fromString(process.env.MY_PRIVATE_KEY);
-// const treasuryId = AccountId.fromString(process.env.TREASURY_ID);
-// const treasuryKey = PrivateKey.fromString(process.env.TREASURY_PVKEY);
-// const aliceId = AccountId.fromString(process.env.ALICE_ID);
-// const aliceKey = PrivateKey.fromString(process.env.ALICE_PVKEY);
-// const bobId = AccountId.fromString(process.env.BOB_ID);
-// const bobKey = PrivateKey.fromString(process.env.BOB_PVKEY);
+const operatorId = AccountId.fromString(process.env.OPERATOR_ID);
+const operatorKey = PrivateKey.fromString(process.env.OPERATOR_PVKEY);
+const treasuryId = AccountId.fromString(process.env.TREASURY_ID);
+const treasuryKey = PrivateKey.fromString(process.env.TREASURY_PVKEY);
+const aliceId = AccountId.fromString(process.env.ALICE_ID);
+const aliceKey = PrivateKey.fromString(process.env.ALICE_PVKEY);
+const bobId = AccountId.fromString(process.env.BOB_ID);
+const bobKey = PrivateKey.fromString(process.env.BOB_PVKEY);
 const client = Client.forTestnet().setOperator(operatorId, operatorKey);
 
 const supplyKey = PrivateKey.generate();
@@ -47,7 +47,7 @@ async function main() {
 
 	// IPFS CONTENT IDENTIFIERS FOR WHICH WE WILL CREATE NFTs
 	CID = [
-		"Kumquat",
+		"QmNPCiNA3Dsu3K5FxDPMG5Q3fZRwVTg14EXA92uqEeSRXn",
 		"QmZ4dgAgt8owvnULxnKxNe8YqpavtVCXmc1Lt2XajFpJs9",
 		"QmPzY5GxevjyfMUF5vEAjtyRoigzWp47MiKAtLBduLMC1T",
 		"Qmd3kGgSrAwwSrhesYcY7K54f3qD7MDo38r7Po2dChtQx5",
@@ -56,8 +56,8 @@ async function main() {
 
 	// CREATE NFT WITH CUSTOM FEE
 	let nftCreate = await new TokenCreateTransaction()
-		.setTokenName("Kumquat")
-		.setTokenSymbol("KUM")
+		.setTokenName("Fall Collection")
+		.setTokenSymbol("LEAF")
 		.setTokenType(TokenType.NonFungibleUnique)
 		.setDecimals(0)
 		.setInitialSupply(0)
@@ -186,5 +186,3 @@ async function main() {
 		return [balanceCheckTx.tokens._map.get(tokenId.toString()), balanceCheckTx.hbars];
 	}
 }
-
-main();
