@@ -2,6 +2,7 @@
   "name": "kumquat",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -19,8 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "nodemon ../hello-hedera-js-sdk/app.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

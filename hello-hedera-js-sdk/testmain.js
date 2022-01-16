@@ -67,6 +67,9 @@ async function main() {
     
     let metadataStr = JSON.parse(nftInfo.toString()).metadata;
     console.log(utf8.decode(metadataStr));
+
+
+    return utf8.decode(metadataStr);
 }
 
-main();
+// main();
