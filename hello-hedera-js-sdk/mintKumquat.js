@@ -68,6 +68,5 @@ module.exports = async function mintKumquat(tokenId, client, supplyKey, treasury
     console.log("coin minted!");
     // console.log(mintRx.status);
 
-
     return mintTx;
 }

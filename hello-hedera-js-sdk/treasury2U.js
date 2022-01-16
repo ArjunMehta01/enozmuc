@@ -40,7 +40,6 @@ module.exports = async function treasury2U(treasuryId, treasuryKey, client, toke
     .freezeWith(client)
     .sign(treasuryKey);
     let tokenTransferSubmit = await tokenTransferTx.execute(client);
-    console.log("I think? uwu")
     let tokenTransferRx = await tokenTransferSubmit.getReceipt(client);
     console.log(`\n NFT transfer Treasury->${userId} status: ${tokenTransferRx.status} \n`);
 
