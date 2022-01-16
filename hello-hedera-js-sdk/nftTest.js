@@ -1,3 +1,6 @@
+// This file was taken from https://github.com/ed-marquez/hedera-sdk-js/tree/main/examples
+// Many thanks to Ed Marquez, this file became a reference for us while we were implementing Kumquat
+
 console.clear();
 require("dotenv").config();
 
@@ -23,13 +26,13 @@ const {
 // Configure accounts and client, and generate needed keys
 const treasuryId = AccountId.fromString(process.env.MY_ACCOUNT_ID);
 const treasuryKey = PrivateKey.fromString(process.env.MY_PRIVATE_KEY);
-// const treasuryId = AccountId.fromString(process.env.TREASURY_ID);
-// const treasuryKey = PrivateKey.fromString(process.env.TREASURY_PVKEY);
-// const aliceId = AccountId.fromString(process.env.ALICE_ID);
-// const aliceKey = PrivateKey.fromString(process.env.ALICE_PVKEY);
-// const bobId = AccountId.fromString(process.env.BOB_ID);
-// const bobKey = PrivateKey.fromString(process.env.BOB_PVKEY);
-// const client = Client.forTestnet().setOperator(operatorId, operatorKey);
+const treasuryId = AccountId.fromString(process.env.TREASURY_ID);
+const treasuryKey = PrivateKey.fromString(process.env.TREASURY_PVKEY);
+const aliceId = AccountId.fromString(process.env.ALICE_ID);
+const aliceKey = PrivateKey.fromString(process.env.ALICE_PVKEY);
+const bobId = AccountId.fromString(process.env.BOB_ID);
+const bobKey = PrivateKey.fromString(process.env.BOB_PVKEY);
+const client = Client.forTestnet().setOperator(operatorId, operatorKey);
 
 const supplyKey = PrivateKey.generate();
 const adminKey = PrivateKey.generate();
