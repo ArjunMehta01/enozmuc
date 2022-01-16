@@ -1,3 +1,6 @@
+// This file was taken from https://github.com/ed-marquez/hedera-sdk-js/tree/main/examples
+// Many thanks to Ed Marquez, this file became a reference for us while we were implementing Kumquat
+
 console.clear();
 require("dotenv").config();
 
