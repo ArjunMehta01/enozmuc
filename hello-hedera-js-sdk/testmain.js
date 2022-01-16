@@ -44,7 +44,7 @@ async function main() {
     let mintRx = mintKumquat((await mockTokenID).token, (await mockTokenID).client, (await mockTokenID).supplyKey);
 
 
-    treasury2U((await testDummy).accountId, treasuryId, treasuryKey._key, client, (await mockTokenID).token);
+    // treasury2U((await testDummy).accountId, treasuryId, treasuryKey._key, client, (await mockTokenID).token);
 
 
 }

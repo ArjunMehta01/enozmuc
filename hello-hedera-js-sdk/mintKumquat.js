@@ -35,8 +35,8 @@ const {
 } = require("@hashgraph/sdk");
 
 module.exports = async function mintKumquat(tokenId, client, supplyKey) {
-
-    mintTx = await new TokenMintTransaction()
+    console.log("kum");
+    let mintTx = await new TokenMintTransaction()
 			.setTokenId(tokenId)
 			.setMetadata([Buffer.from(QUATS)])
 			.freezeWith(client);
