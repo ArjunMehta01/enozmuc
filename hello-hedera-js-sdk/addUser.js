@@ -26,7 +26,7 @@ module.exports = async function addUser() {
     //Create a new account with 1,000 tinybar starting balance
     const newAccountTransactionResponse = await new AccountCreateTransaction()
         .setKey(newAccountPublicKey)
-        .setInitialBalance(Hbar.fromTinybars(100))
+        .setInitialBalance(10)
         .execute(client);
 
     // Get the new account ID

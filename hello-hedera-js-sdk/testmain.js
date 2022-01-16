@@ -31,6 +31,7 @@ const {
     TokenNftInfoQuery,
     
 } = require("@hashgraph/sdk");
+const U2Utransaction = require("./U2Utransaction");
 
 const treasuryId = AccountId.fromString(process.env.MY_ACCOUNT_ID);
 const treasuryKey = PrivateKey.fromString(process.env.MY_PRIVATE_KEY);
@@ -70,6 +71,17 @@ async function main() {
     await treasury2U(treasuryId, treasuryKey, client, kumquatID, treasuryTokens[0], (await testDummy), treasuryTokens);
     console.log(`user tokens after transfer ${(await testDummy).tokens}`);
 
+    console.log("Create another user");
+    let dummy2 = addUser();
+
+    console.log("Transfer one of user 1's token to user 2");
+    await U2Utransaction(1, client, kumquatID, (await testDummy).tokens[0], await testDummy, await dummy2);
+
+    console.log("Check User 1's tokens");
+    console.log((await testDummy).tokens);
+
+    console.log("Check user 2 tokens");
+    console.log((await dummy2).tokens);
 }
 
 
