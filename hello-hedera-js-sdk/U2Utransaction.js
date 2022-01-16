@@ -2,8 +2,8 @@ async function U2Utransaction(tokenID, quatID, sellerID, buyerID,
                               sellerKey, buyerKey, price, client) {
     let tokenTransfer = await new TransferTransaction()
         .addNftTransfer(tokenID, quatID, sellerID, buyerID)
-        .addHbarTransfer(sellerID, price)
-        .addHbarTransfer(buyerID, -price)
+        .addHbarTransfer(sellerID, Hbar.fromTinybars(price))
+        .addHbarTransfer(buyerID, -Hbar.fromTinybars(price))
         .freezeWith(client)
         .sign(sellerKey);
     tokenTranserSign = await tokenTransfer.sign(buyerKey);
