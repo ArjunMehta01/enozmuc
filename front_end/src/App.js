@@ -22,8 +22,24 @@ function App() {
 		  .then((data) => setData(data.message));
 	  }, []);
 
+//e
+// const submit = () => {
+//     // e.preventDefault()
+//     fetch('/api', {
+//       method: 'POST',
+//       body: JSON.stringify({ generate }),
+//       headers: { 'Content-Type': 'application/json' },
+//     })
+//       .then(res => res.json())
+//       .then(json => setGenerate(json.generate))
+
+// 	console.log(generate);
+
+//   }
+
 
 	const generateHandler = () => {
+		// submit();
 		setGenerate(false);
 	}
 
@@ -31,7 +47,7 @@ function App() {
 	return (
 		<div>
 			<p>{!data ? "Loading..." : data}</p>
-			{generate ? <Button onClick={generateHandler}>cum</Button> : <Sandbox/>}
+			{generate ? <Button onClick={generateHandler}>generate</Button> : <Sandbox/>}
 			{/* ../../post */}
 
 

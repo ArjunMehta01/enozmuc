@@ -36,7 +36,7 @@ const treasuryKey = PrivateKey.fromString(process.env.MY_PRIVATE_KEY);
 const client = Client.forTestnet().setOperator(treasuryId, treasuryKey);
 
 
-async function main() {
+module.exports = async function main() {
     //Instantiates Test user.
 
     let testDummy = addUser();
@@ -58,17 +58,21 @@ async function main() {
     console.log(userBalance.tokens);
 
     console.log("get metadata of user's token");
-
-    console.log(await getTokenQuat(kumquatID, 1, client));
+    
+    let returnType = await getTokenQuat(kumquatID, 1, client);
+    console.log(returnType);
     // console.log(getTokenQuat((await mockTokenID).token), 1, client);
     let mintTx2 = await mintKumquat(kumquatID, (await mockTokenID).client, (await mockTokenID).supplyKey);
 
     console.log("get all of user's token serial numbers");
 
-    balanceCheck = await new AccountBalanceQuery().setAccountId((await testDummy).accountId).execute(client);
-    console.log(balanceCheck.toString());
+    // balanceCheck = await new AccountBalanceQuery().setAccountId((await testDummy).accountId).execute(client);
+    // console.log(balanceCheck.toString());
+
+
+    return returnType;
 }
 
 
-main();
+// main();
 
