@@ -6,3 +6,5 @@
 - Sehbazz Virk
 - Karan Sharma
 - Marcos Gonzalez Mayedo
+
+Devpost: https://devpost.com/software/enozmuc
